@@ -32,8 +32,7 @@
 </head>
 <body>
 <h1>Визуализация дорожной карты роста автоматизации</h1>
-<p>Ниже дорожная карта в наглядном виде при старте программы в <code>апреле 2026</code>.</p>
-<p>Кварталы ниже означают <code>кварталы программы</code>, а не календарные кварталы года.</p>
+<p>Ниже дорожная карта в наглядном виде при старте программы в <code>апреле 2026</code>. На диаграммах Ганта ось — месяцы и даты; длительности фаз заданы в месяцах от старта.</p>
 <h2>Таймлайн по фазам</h2>
 <pre><code class="language-mermaid">gantt
     title Рост автоматизации поддержки до 60%
@@ -150,20 +149,29 @@
 </table>
 <p>Продакт-менеджер показан как владелец программы, но не входит в указанную численность <code>6 разработчиков, 1 ML-инженер, 1 аналитик, 1 дизайнер</code>.</p>
 <h2>Логика роста метрики</h2>
-<pre><code class="language-mermaid">flowchart LR
-    current30[&quot;30% сейчас&quot;]
-    phase1[&quot;Этап 1: измерения и надежность&quot;]
-    q1[&quot;33-35%, квартал 1&quot;]
-    phase2[&quot;Этап 2: покрытие топ-интентов&quot;]
-    q2[&quot;38-40%, квартал 2&quot;]
-    phase3[&quot;Этап 3: контекст и устойчивость диалога&quot;]
-    q4[&quot;47-50%, квартал 4&quot;]
-    phase4[&quot;Этап 4: открытие новых сегментов и белого списка для VIP&quot;]
-    q6[&quot;54-57%, квартал 6&quot;]
-    phase5[&quot;Этап 5: длинный хвост, мультимодальность, LLM&quot;]
-    q8[&quot;60%+, квартал 8&quot;]
+<p>Здесь <strong>кварталы в подписях вех — кварталы программы</strong> (нумерация от старта в апреле 2026), а <strong>не календарные</strong> кварталы года (январь–март и т.д.). Цепочка читается сверху вниз: этап работ → целевая веха по доле автоматизации → следующий этап.</p>
+<pre><code class="language-mermaid">%%{init: {'flowchart': {'nodeSpacing': 28, 'rankSpacing': 44, 'padding': 16, 'curve': 'basis'}, 'themeVariables': {'fontSize': '18px', 'fontFamily': 'system-ui, Segoe UI, sans-serif'}}}%%
+flowchart TB
+    current30([&quot;30% сейчас&quot;])
+    phase1[&quot;Этап 1&lt;br/&gt;Измерения и надежность&quot;]
+    q1[&quot;33–35%&lt;br/&gt;квартал 1 программы&quot;]
+    phase2[&quot;Этап 2&lt;br/&gt;Покрытие топ-интентов&quot;]
+    q2[&quot;38–40%&lt;br/&gt;квартал 2 программы&quot;]
+    phase3[&quot;Этап 3&lt;br/&gt;Контекст и устойчивый диалог&quot;]
+    q4[&quot;47–50%&lt;br/&gt;квартал 4 программы&quot;]
+    phase4[&quot;Этап 4&lt;br/&gt;Новые сегменты и белый список VIP&quot;]
+    q6[&quot;54–57%&lt;br/&gt;квартал 6 программы&quot;]
+    phase5[&quot;Этап 5&lt;br/&gt;Хвост, мультимодальность, LLM&quot;]
+    q8[&quot;60%+&lt;br/&gt;квартал 8 программы&quot;]
 
     current30 --&gt; phase1 --&gt; q1 --&gt; phase2 --&gt; q2 --&gt; phase3 --&gt; q4 --&gt; phase4 --&gt; q6 --&gt; phase5 --&gt; q8
+
+    classDef startEnd fill:#e8f2ff,stroke:#2563eb,stroke-width:2px,color:#0f172a
+    classDef milestone fill:#f0fdf4,stroke:#16a34a,stroke-width:2px,color:#0f172a
+    classDef phase fill:#fffbeb,stroke:#d97706,stroke-width:2px,color:#0f172a
+    class current30,q8 startEnd
+    class q1,q2,q4,q6 milestone
+    class phase1,phase2,phase3,phase4,phase5 phase
 </code></pre>
 <h2>Что дает каждая фаза</h2>
 <table>
