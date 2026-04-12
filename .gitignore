@@ -3,6 +3,8 @@
 !/.gitignore
 !/docs/
 !/.github/
+!/support-automation-roadmap-visual.md
+!/support-automation-gantt-roles.md
 
 /.github/*
 !/.github/workflows/
@@ -12,4 +14,5 @@
 /docs/*
 !/docs/prototype.html
 !/docs/support-automation-roadmap-visual.html
+!/docs/gantt-roles.html
 !/docs/.nojekyll

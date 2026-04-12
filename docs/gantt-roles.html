@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Диаграмма Ганта по ролям — автоматизация поддержки</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height: 1.5; max-width: 980px; margin: 0 auto; padding: 1.5rem; color: #1a1a1a; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #ddd; padding: 0.5rem 0.65rem; text-align: left; }
+    th { background: #f5f5f5; }
+    pre { overflow-x: auto; background: #f8f8f8; padding: 0.75rem; border-radius: 6px; }
+    code { font-family: ui-monospace, monospace; font-size: 0.9em; }
+    .mermaid { margin: 1.25rem 0; text-align: center; overflow-x: auto; }
+    a { color: #2563eb; }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof mermaid === 'undefined') return;
+      mermaid.initialize({ startOnLoad: false, theme: 'neutral', securityLevel: 'loose' });
+      document.querySelectorAll('pre code.language-mermaid').forEach(function (code) {
+        var graph = code.textContent;
+        var wrap = code.closest('div.highlighter-rouge') || code.parentElement;
+        var div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = graph;
+        if (wrap) wrap.replaceWith(div);
+      });
+      mermaid.run();
+    });
+  </script>
+</head>
+<body>
+<h1>Диаграмма Ганта по ролям команды</h1>
+<p><a href="support-automation-roadmap-visual.html">← К общей дорожной карте</a></p>
+<p>Ось — месяцы и даты от старта программы (<code>апрель 2026</code>); длительности заданы в месяцах.</p>
+<h2>Диаграмма</h2>
+<pre><code class="language-mermaid">gantt
+    title Рост автоматизации по ролям команды
+    dateFormat  YYYY-MM
+    axisFormat  %m.%y
+
+    section Продакт-менеджер
+    Приоритизация, вехи, квартальные цели :pm1, 2026-04, 24M
+    Релизное управление и решения по стоп-критериям :pm2, 2026-06, 22M
+    Решения по запуску сегментов :pm3, 2027-01, 15M
+
+    section Аналитик
+    Классификация причин и дешборды :an1, 2026-04, 2M
+    Когортный анализ и оценка эффекта :an2, 2026-06, 22M
+    Разбор новых кластеров из неклассифицированных причин :an3, 2027-07, 9M
+
+    section ML-инженер
+    Контур оценки качества и пороги уверенности :ml1, 2026-04, 4M
+    Перефразы, уточнения, несколько сообщений :ml2, 2026-08, 8M
+    Мультимодальность и LLM с ограничениями :ml3, 2027-07, 9M
+
+    section Разработчик данных и качества (1)
+    Логирование, витрины и причины переводов :dq1, 2026-04, 3M
+    Инструменты разметки и оценка качества :dq2, 2026-06, 10M
+    Поддержка длинного хвоста и новых кластеров :dq3, 2027-07, 9M
+
+    section Разработчики платформы (2)
+    Надежность, логи, передача на оператора :plat1, 2026-04, 3M
+    Контекст, память, слоты, ранний перевод :plat2, 2026-08, 8M
+    Критерии запуска сегментов и безопасное масштабирование :plat3, 2027-01, 9M
+    Маршрутизация мультимодальных кейсов :plat4, 2027-07, 6M
+
+    section Разработчики сценариев и интеграций (3)
+    Топ-интенты и пробелы покрытия :sc1, 2026-06, 4M
+    Персонализация и ветки уточнений :sc2, 2026-08, 6M
+    Белый список сценариев для новых сегментов :sc3, 2027-01, 9M
+    Длинный хвост сценариев :sc4, 2027-07, 9M
+
+    section Дизайнер
+    UX первого ответа и сценарных шаблонов :des1, 2026-06, 4M
+    UX уточнений и передачи на оператора :des2, 2026-08, 8M
+    UX для новых сегментов :des3, 2027-01, 9M
+    UX мультимодальных сценариев :des4, 2027-07, 6M
+
+    section Вехи
+    33-35 процентов :milestone, rm1, 2026-06, 0d
+    38-40 процентов :milestone, rm2, 2026-09, 0d
+    47-50 процентов :milestone, rm3, 2027-03, 0d
+    54-57 процентов :milestone, rm4, 2027-09, 0d
+    60 процентов плюс :milestone, rm5, 2028-03, 0d
+</code></pre>
+<h3>Легенда по распределению команды</h3>
+<table>
+<thead>
+<tr>
+<th>Роль</th>
+<th>Зона ответственности</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Продакт-менеджер</td>
+<td>Приоритизация, последовательность запуска, контроль метрик, решения по стоп-критериям и масштабированию</td>
+</tr>
+<tr>
+<td>Аналитик</td>
+<td>Классификация причин переводов, когорты, оценка эффекта, дешборды</td>
+</tr>
+<tr>
+<td>ML-инженер</td>
+<td>Порог уверенности, NLU-улучшения, мультимодальность, LLM-ограничения</td>
+</tr>
+<tr>
+<td>1 разработчик в потоке данных и качества</td>
+<td>События, витрины, инструменты разметки, инструменты контроля качества</td>
+</tr>
+<tr>
+<td>2 разработчика платформы</td>
+<td>Надежность, память, слоты, передача на оператора, критерии запуска сегментов</td>
+</tr>
+<tr>
+<td>3 разработчика сценариев и интеграций</td>
+<td>Топ-интенты, новые ветки, персонализация, сегментные сценарии</td>
+</tr>
+<tr>
+<td>Дизайнер</td>
+<td>UX первого ответа, уточнений, передачи на оператора и новых сегментов</td>
+</tr>
+</tbody>
+</table>
+<p>Продакт-менеджер показан как владелец программы, но не входит в указанную численность <code>6 разработчиков, 1 ML-инженер, 1 аналитик, 1 дизайнер</code>.</p>
+</body>
+</html>
