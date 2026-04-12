@@ -1,0 +1,15 @@
+# В репозиторий не попадает ничего, кроме каталога docs/ (только нужные файлы) и workflow Pages.
+/*
+!/.gitignore
+!/docs/
+!/.github/
+
+/.github/*
+!/.github/workflows/
+/.github/workflows/*
+!/.github/workflows/pages.yml
+
+/docs/*
+!/docs/prototype.html
+!/docs/support-automation-roadmap-visual.html
+!/docs/.nojekyll
