@@ -12,7 +12,6 @@
 !/.github/workflows/pages.yml
 
 /docs/*
-!/docs/prototype.html
 !/docs/chats-interactive-prototype.html
 !/docs/support-automation-roadmap-visual.html
 !/docs/gantt-roles.html
